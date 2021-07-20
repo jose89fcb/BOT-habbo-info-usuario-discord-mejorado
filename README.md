@@ -19,8 +19,10 @@ Aquí os dejo unas imagenes:
 
 Abre el archivo config.json:
 
-<b>token:</b> Para conseguir un BOT y el token deberas de entrar en el siguiente enlace: https://discord.com/developers/applications y crear tu propio BOT
+<b>token:</b> Para conseguir un BOT y el token deberas de entrar en el siguiente enlace: https://discord.com/developers/applications y crear tu propio BOT<
+<br>
 <b>Prefijo:</b> Esta configuracion la puedes dejar tal cual está como gustes, esto será el comando para mandar al BOT para que hable puedes poner cualquier cosa
+<br>
 <b>Hotel:</b> aquí deberas de añadir el hotel que gustes de la siguiente manera:
 es
 com
