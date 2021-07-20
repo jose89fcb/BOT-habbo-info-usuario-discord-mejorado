@@ -31,7 +31,7 @@ bot.remove_command("help") #Borramos el comando !help por defecto
 
 #Comienza el codigo de habbo.es
 @bot.command()
-async def HabboES(ctx,  *, Habboinfo):
+async def habbo(ctx,  *, Habboinfo):
   async with ctx.typing():
    
     await asyncio.sleep(0)
@@ -39,7 +39,7 @@ async def HabboES(ctx,  *, Habboinfo):
    
 
    
-    response = requests.get(f'https://www.habbo.es/api/public/users?name={Habboinfo}')
+    response = requests.get("https://www.habbo." + config['hotel']+  f"/api/public/users?name={Habboinfo}")
 
 
    
@@ -48,6 +48,8 @@ async def HabboES(ctx,  *, Habboinfo):
     id = response.json()['uniqueId']
     Habbokeko = response.json()['name']
     mision = response.json()['motto']
+
+   
 
    
    
@@ -64,33 +66,36 @@ async def HabboES(ctx,  *, Habboinfo):
     miembro1 = registradodesde.split("T")[1].split(" ")
     hora = " ".join(reversed(miembro1))
 
-    url = f'https://www.habbo.es/api/public/users/{id}/groups'
+    url = "https://www.habbo." + config['hotel']+  f"/api/public/users/{id}/groups"
     r= requests.get(url)
     habbo4 = r.text
     habbo4 = r.json()
     grupos = len(habbo4)
     grupos=(str(grupos))
 
-    url = f'https://www.habbo.es/api/public/users/{id}/rooms'
+    url = "https://www.habbo." + config['hotel'] + f"/api/public/users/{id}/rooms"
     r= requests.get(url)
     habbo3 = r.text
     habbo3 = r.json()
     salas = len(habbo3)
     salas=(str(salas))
 
-    url = f'https://www.habbo.es/extradata/public/users/{id}/photos'
+    url = "https://www.habbo." + config['hotel'] + f"/extradata/public/users/{id}/photos"
     r= requests.get(url)
     habbo2 = r.text
     habbo2 = r.json()
     fotos = len(habbo2)
     fotos=(str(fotos))
 
-    url= f'https://www.habbo.es/api/public/users/{id}/friends'
+    url= "https://www.habbo." + config['hotel'] + f"/api/public/users/{id}/friends"
     r= requests.get(url)
     habbo1 = r.text
     habbo1 = r.json()
     amigos = len(habbo1)
     amigos=(str(amigos))
+
+
+    
     
     
     
@@ -149,8 +154,15 @@ async def HabboES(ctx,  *, Habboinfo):
     
 
     perfil = (str(perfil)).replace("False","No muestra su perfil❌").replace("True","Muestra su perfil")
+
     
-   
+    
+    url= "https://www.habbo." + config['hotel'] + f"/api/public/users/{id}/badges"
+    r= requests.get(url)
+    habbo2 = r.text
+    habbo2 = r.json()
+    placas = len(habbo2)
+    placas = ('{:,}'.format(placas)).replace(",",".")
 
    
    
@@ -178,6 +190,8 @@ async def HabboES(ctx,  *, Habboinfo):
     grupos="No muestra sus grupos❌"
     salas="No muestra sus salas❌"
     amigos="No muestra sus amigos❌"
+    placas="No muestra sus placas❌"
+  
     
 
 
@@ -190,10 +204,12 @@ async def HabboES(ctx,  *, Habboinfo):
     fechaAccesso="Lo tiene oculto❌"
     horaAccesso=""
     
+    
 
   except UnboundLocalError:
     fechaAccesso=""
     horaAccesso=""
+   
     
     
 
@@ -202,12 +218,13 @@ async def HabboES(ctx,  *, Habboinfo):
 
 
 
-  embed = discord.Embed(title="\n\n\nEstá es la info de 🡺 " + Habbokeko, description="•ID🡺 " + id + "\n\n•Estado🡺 " +estado + "\n\n•Total XP🡺 " + totalxp + "\n\n•Misión 🡺 " + mision  + "\n\n•Nivel actual🡺 " +  NivelActual + "\n\n•Gemas Obtenidas (Estrellas)🡺 " + GemasHabbo + "\n\n•Siguiente Nivel🡺 " + siguientenivel + "\n\n•Miembro desde🡺 " +fecha +" - " + hora + "\n\n•último accesso🡺 "  +fechaAccesso +" - "+horaAccesso + "\n\n•Perfil🡺 " +perfil + "\n\n•Grupos Totales🡺 " + grupos + "\n\n•Salas Totales🡺 " + salas + "\n\n•Fotos Totales🡺 " + fotos +"\n\n•Total Amigos🡺 " + amigos + "\n\n[Visita el perfil de " + Habbokeko + "](https://habbo.es/profile/"+ Habbokeko + ")"  "\n\n[twitter oficial](https://twitter.com/ESHabbo) | " "[facebook oficial](https://www.facebook.com/Habbo) | " "[instagram oficial](https://www.instagram.com/habboofficial)", timestamp=datetime.datetime.utcnow(), color=discord.Colour.random())
+  embed = discord.Embed(title="\n\n\nEstá es la info de 🡺 " + Habbokeko, description="•ID🡺 " + id + "\n\n•Estado🡺 " +estado + "\n\n•Total XP🡺 " + totalxp + "\n\n•Misión 🡺 " + mision  + "\n\n•Nivel actual🡺 " +  NivelActual + "\n\n•Gemas Obtenidas (Estrellas)🡺 " + GemasHabbo + "\n\n•Siguiente Nivel🡺 " + siguientenivel + "\n\n•Miembro desde🡺 " +fecha +"   " + hora + "\n\n•último accesso🡺 "  +fechaAccesso +"   "+horaAccesso + "\n\n•Perfil🡺 " +perfil + "\n\n•Grupos Totales🡺 " + grupos + "\n\n•Salas Totales🡺 " + salas + "\n\n•Fotos Totales🡺 " + fotos +"\n\n•Total Amigos🡺 " + amigos + "\n\n•Placas Totales🡺 " +placas + "\n\n[Visita el perfil de " + Habbokeko + "](https://habbo.es/profile/"+ Habbokeko + ")"  "\n\n[twitter oficial](https://twitter.com/ESHabbo) | " "[facebook oficial](https://www.facebook.com/Habbo) | " "[instagram oficial](https://www.instagram.com/habboofficial)", timestamp=datetime.datetime.utcnow(), color=discord.Colour.random())
 
   embed.set_thumbnail(url="https://www.habbo.es/habbo-imaging/avatarimage?user=" + Habbokeko + "&&headonly=1&size=b&gesture=sml&head_direction=4&action=std")
   embed.set_author(name="Habbo [ES]", icon_url="https://i.imgur.com/0UDuO3n.png")
   embed.set_footer(text="habbo[ES]", icon_url="https://i.imgur.com/6ePWlHz.png")
   await ctx.send(embed=embed)
+ 
  
 
   
@@ -248,6 +265,7 @@ async def on_message(message):
             embed.set_thumbnail(url="https://i.imgur.com/kch7Otk.png")
             
             return await message.author.send(embed=embed)
+
             
 
 
