@@ -45,3 +45,8 @@ com.tr
 
 Para usar el bot dentro de discord deberas de escribir por ejemplo: !habbo .iroke.
 <img src="https://i.imgur.com/3oM3cGD.png">
+
+
+
+El bot lo puedes alojar en https://replit.com/ video:
+https://www.youtube.com/watch?v=VviOBNGlHTw
