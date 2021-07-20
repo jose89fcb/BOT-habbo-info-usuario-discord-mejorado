@@ -48,5 +48,8 @@ Para usar el bot dentro de discord deberas de escribir por ejemplo: !habbo .irok
 
 
 
-El bot lo puedes alojar en https://replit.com/ video:
+El bot lo puedes alojar en https://replit.com/ 
+<br>
+video:
+<br>
 https://www.youtube.com/watch?v=VviOBNGlHTw
