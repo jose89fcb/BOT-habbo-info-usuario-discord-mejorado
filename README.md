@@ -25,13 +25,21 @@ Abre el archivo config.json:
 <br>
 <b>Hotel:</b> aquí deberas de añadir el hotel que gustes de la siguiente manera:
 es
+<br>
 com
+<br>
 de
+<br>
 fr
+<br>
 fi
+<br>
 it
+<br>
 nl
+<br>
 com.br
+<br>
 com.tr
 
 
