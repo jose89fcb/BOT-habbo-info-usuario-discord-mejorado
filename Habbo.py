@@ -109,7 +109,7 @@ async def HabboES(ctx,  *, Habboinfo):
   try:
     
     estado = response.json()["online"]
-    estado = (str(estado)).replace("True","Conectado").replace("False","desconectado")
+    estado = (str(estado)).replace("True","Conectado✅").replace("False","desconectado❌")
     
 
     totalxp = response.json()['totalExperience']
@@ -127,19 +127,28 @@ async def HabboES(ctx,  *, Habboinfo):
     ultiomoaccesso = response.json()["lastAccessTime"]
     
     habboaccesso1 = ultiomoaccesso
-    accesso = habboaccesso1.split("T")[0].split("-")
+    accesso = habboaccesso1.split("T")[0].split('-')
     fechaAccesso = "/".join(reversed(accesso))
-    ultiomoaccesso = ultiomoaccesso.replace("."," ")
-    ultiomoaccesso = ultiomoaccesso.replace("000+0000","")
+    ultiomoaccesso = ultiomoaccesso.replace('000+0000','')
+    ultiomoaccesso = ultiomoaccesso.replace('.','')
+
+ 
+   
 
     habboaccesso = ultiomoaccesso
     accesso1 = habboaccesso.split("T")[1].split(" ")
     horaAccesso = " ".join(reversed(accesso1))
 
+    
+
+    
+
 
     perfil = response.json()['profileVisible']
 
-    perfil = (str(perfil)).replace("False","No muestra su perfil").replace("True","Muestra su perfil")
+    
+
+    perfil = (str(perfil)).replace("False","No muestra su perfil❌").replace("True","Muestra su perfil")
     
    
 
@@ -148,7 +157,8 @@ async def HabboES(ctx,  *, Habboinfo):
     
     
 
-   
+  
+
     
     
 
@@ -157,30 +167,42 @@ async def HabboES(ctx,  *, Habboinfo):
 
   except KeyError:
 
-    estado ="desconectado"
-    totalxp="No muestra Xp"
-    NivelActual="No muestra el nivel"
-    GemasHabbo="no muestra sus gemas"
-    siguientenivel="No muestra proceso"
-    fechaAccesso="No muestra la fecha"
+    estado ="desconectado❌"
+    totalxp="No muestra Xp❌"
+    NivelActual="No muestra el nivel❌"
+    GemasHabbo="no muestra sus gemas❌"
+    siguientenivel="No muestra proceso❌"
+    fechaAccesso="No muestra la fecha❌"
     horaAccesso="ni la hora"
-    perfil="No muestra su perfil"
-    grupos="No muestra sus grupos"
-    salas="No muestra sus salas"
-    amigos="No muestra sus amigos"
-    
-    
-    
-    
-   
-    
-
-    
-   
+    perfil="No muestra su perfil❌"
+    grupos="No muestra sus grupos❌"
+    salas="No muestra sus salas❌"
+    amigos="No muestra sus amigos❌"
     
 
 
-  embed = discord.Embed(title="\n\n\nEstá es la info de 🡺 " + Habbokeko, description="•ID🡺 " + id + "\n\n•Estado🡺 " +estado + "\n\n•Total XP🡺 " + totalxp + "\n\n•Misión 🡺 " + mision  + "\n\n•Nivel actual🡺 " +  NivelActual + "\n\n•Gemas Obtenidas (Estrellas)🡺 " + GemasHabbo + "\n\n•Siguiente Nivel🡺 " + siguientenivel + "\n\n•Miembro desde🡺 " +fecha +" - " + hora + "\n\n•último accesso🡺 "  +fechaAccesso + " - " +horaAccesso + "\n\n•Perfil🡺 " + perfil + "\n\n•Grupos Totales🡺 " + grupos + "\n\n•Salas Totales🡺 " + salas + "\n\n•Fotos Totales🡺 " + fotos +"\n\n•Total Amigos🡺 " + amigos + "\n\n[Visita el perfil de " + Habbokeko + "](https://habbo.es/profile/"+ Habbokeko + ")"  "\n\n[twitter oficial](https://twitter.com/ESHabbo) | " "[facebook oficial](https://www.facebook.com/Habbo) | " "[instagram oficial](https://www.instagram.com/habboofficial)", timestamp=datetime.datetime.utcnow(), color=discord.Colour.random())
+  
+ 
+    
+  except AttributeError:
+    ultiomoaccesso="nada"
+    perfil="Muestra su perfil"
+    fechaAccesso="Lo tiene oculto❌"
+    horaAccesso=""
+    
+
+  except UnboundLocalError:
+    fechaAccesso=""
+    horaAccesso=""
+    
+    
+
+
+    
+
+
+
+  embed = discord.Embed(title="\n\n\nEstá es la info de 🡺 " + Habbokeko, description="•ID🡺 " + id + "\n\n•Estado🡺 " +estado + "\n\n•Total XP🡺 " + totalxp + "\n\n•Misión 🡺 " + mision  + "\n\n•Nivel actual🡺 " +  NivelActual + "\n\n•Gemas Obtenidas (Estrellas)🡺 " + GemasHabbo + "\n\n•Siguiente Nivel🡺 " + siguientenivel + "\n\n•Miembro desde🡺 " +fecha +" - " + hora + "\n\n•último accesso🡺 "  +fechaAccesso +" - "+horaAccesso + "\n\n•Perfil🡺 " +perfil + "\n\n•Grupos Totales🡺 " + grupos + "\n\n•Salas Totales🡺 " + salas + "\n\n•Fotos Totales🡺 " + fotos +"\n\n•Total Amigos🡺 " + amigos + "\n\n[Visita el perfil de " + Habbokeko + "](https://habbo.es/profile/"+ Habbokeko + ")"  "\n\n[twitter oficial](https://twitter.com/ESHabbo) | " "[facebook oficial](https://www.facebook.com/Habbo) | " "[instagram oficial](https://www.instagram.com/habboofficial)", timestamp=datetime.datetime.utcnow(), color=discord.Colour.random())
 
   embed.set_thumbnail(url="https://www.habbo.es/habbo-imaging/avatarimage?user=" + Habbokeko + "&&headonly=1&size=b&gesture=sml&head_direction=4&action=std")
   embed.set_author(name="Habbo [ES]", icon_url="https://i.imgur.com/0UDuO3n.png")
@@ -192,7 +214,6 @@ async def HabboES(ctx,  *, Habboinfo):
     
   
  
-   
 
 
 
