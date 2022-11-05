@@ -1,4 +1,6 @@
-última actualizacion Hora: 15:32
+<b>última actualizacion</b> 
+<br>
+Hora: 15:32
 <br>
 Fecha: 05/11/2022
 <br>
