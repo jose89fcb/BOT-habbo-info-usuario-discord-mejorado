@@ -10,7 +10,9 @@ Miembro desde
 <br>
 Ultimo Accesso 
 <br>
+
 ahora muestra la hora y fecha correctamente
+<img src="https://i.imgur.com/ZJtqTiJ.png">
 #
 
 
