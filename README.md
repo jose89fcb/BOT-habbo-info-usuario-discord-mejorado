@@ -4,6 +4,8 @@ Hora: 15:32
 <br>
 Fecha: 05/11/2022
 <br>
+<br>
+<br>
 Miembro desde 
 <br>
 Ultimo Accesso 
