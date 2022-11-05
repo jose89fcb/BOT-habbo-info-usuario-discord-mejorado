@@ -1,3 +1,10 @@
+última actualizacion Hora: 15:32
+Fecha: 05/11/2022
+#
+
+
+
+
 Aquí teneis el bot preparado para subirse a replit y mantenerlo las 24/7:
 https://github.com/jose89fcb/bot-habboinfo-subir-a-replit
 
