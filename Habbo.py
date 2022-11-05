@@ -11,6 +11,10 @@ import requests, json, discord, datetime, asyncio, aiohttp
 from urllib import parse, request
 import requests, bs4
 import re
+from dateutil.parser import isoparse
+import locale
+locale.setlocale(locale.LC_TIME, "es_ES")
+from datetime import datetime
 
 
 
@@ -55,16 +59,18 @@ async def habbo(ctx,  *, Habboinfo):
    
    
 
-    MiembroDesde = response.json()['memberSince']
-    registrado = MiembroDesde
-    miembro = registrado.split("T")[0].split("-")
-    fecha = "/".join(reversed(miembro))
-    MiembroDesde = MiembroDesde.replace("."," ")
-    MiembroDesde = MiembroDesde.replace("000+0000","")
+    fecha = isoparse(response.json()['memberSince']).timestamp()
+    timestamp = fecha
+    dt_object = datetime.fromtimestamp(timestamp).strftime("%A, %#d de %B del %Y %H:%M:%S")
+    #registrado = MiembroDesde
+    #miembro = registrado.split("T")[0].split("-")
+    #fecha = "/".join(reversed(miembro))
+    #MiembroDesde = MiembroDesde.replace("."," ")
+    #MiembroDesde = MiembroDesde.replace("000+0000","")
 
-    registradodesde = MiembroDesde
-    miembro1 = registradodesde.split("T")[1].split(" ")
-    hora = " ".join(reversed(miembro1))
+    #registradodesde = MiembroDesde
+    #miembro1 = registradodesde.split("T")[1].split(" ")
+    #hora = " ".join(reversed(miembro1))
 
     url = "https://www.habbo." + config['hotel']+  f"/api/public/users/{id}/groups"
     r= requests.get(url)
@@ -136,13 +142,16 @@ async def habbo(ctx,  *, Habboinfo):
     siguientenivel = response.json()['currentLevelCompletePercent']
     siguientenivel = (str(siguientenivel))
 
-    ultiomoaccesso = response.json()["lastAccessTime"]
+  
+    ultiomoaccesso = isoparse(response.json()['lastAccessTime']).timestamp()
+    timestamp = ultiomoaccesso
+    ultmimoacesso = datetime.fromtimestamp(timestamp).strftime("%A, %#d de %B del %Y %H:%M:%S")
     
-    habboaccesso1 = ultiomoaccesso
-    accesso = habboaccesso1.split("T")[0].split('-')
-    fechaAccesso = "/".join(reversed(accesso))
-    ultiomoaccesso = ultiomoaccesso.replace('000+0000','')
-    ultiomoaccesso = ultiomoaccesso.replace('.','')
+    #habboaccesso1 = ultiomoaccesso
+    #accesso = habboaccesso1.split("T")[0].split('-')
+    #fechaAccesso = "/".join(reversed(accesso))
+    #ultiomoaccesso = ultiomoaccesso.replace('000+0000','')
+    #ultiomoaccesso = ultiomoaccesso.replace('.','')
 
  
    
@@ -185,7 +194,7 @@ async def habbo(ctx,  *, Habboinfo):
     NivelActual="No muestra el nivel❌"
     GemasHabbo="no muestra sus gemas❌"
     siguientenivel="No muestra proceso❌"
-    fechaAccesso="No muestra la fecha"
+    ultmimoacesso="No muestra la fecha"
     horaAccesso="ni la hora❌"
     perfil="No muestra su perfil❌"
     grupos="No muestra sus grupos❌"
@@ -229,20 +238,17 @@ async def habbo(ctx,  *, Habboinfo):
     
 
 
-    
 
 
 
-  embed = discord.Embed(title="\n\n\nEstá es la info de 🡺 " + Habbokeko, description="•ID🡺 " + id + "\n\n•Estado🡺 " +estado + "\n\n•Total XP🡺 " + totalxp + "\n\n•Misión 🡺 " + mision  + "\n\n•Nivel actual🡺 " +  NivelActual + "\n\n•Gemas Obtenidas (Estrellas)🡺 " + GemasHabbo + "\n\n•Siguiente Nivel🡺 " + siguientenivel + "\n\n•Miembro desde🡺 " +fecha +"   " + hora + "\n\n•último accesso🡺 "  +fechaAccesso +"   "+horaAccesso + "\n\n•Perfil🡺 " +perfil + "\n\n•Grupos Totales🡺 " + grupos + "\n\n•Salas Totales🡺 " + salas + "\n\n•Fotos Totales🡺 " + fotos +"\n\n•Total Amigos🡺 " + amigos + "\n\n•Placas Totales🡺 " +placas + "\n\n[Visita el perfil de " + Habbokeko + "](https://habbo.es/profile/"+ Habbokeko + ")"  "\n\n[twitter oficial](https://twitter.com/ESHabbo) | " "[facebook oficial](https://www.facebook.com/Habbo) | " "[instagram oficial](https://www.instagram.com/habboofficial)", timestamp=datetime.datetime.utcnow(), color=discord.Colour.random())
+  embed = discord.Embed(title="\n\n\nEstá es la info de 🡺 " + Habbokeko, description="•ID🡺 " + id + "\n\n•Estado🡺 " +estado + "\n\n•Total XP🡺 " + totalxp + "\n\n•Misión 🡺 " + mision  + "\n\n•Nivel actual🡺 " +  NivelActual + "\n\n•Gemas Obtenidas (Estrellas)🡺 " + GemasHabbo + "\n\n•Siguiente Nivel🡺 " + siguientenivel + "\n\n•Miembro desde🡺 " +dt_object +"\n\n•último accesso🡺 "  +ultmimoacesso +" \n\n•Perfil🡺 " +perfil + "\n\n•Grupos Totales🡺 " + grupos + "\n\n•Salas Totales🡺 " + salas + "\n\n•Fotos Totales🡺 " + fotos +"\n\n•Total Amigos🡺 " + amigos + "\n\n•Placas Totales🡺 " +placas + "\n\n[Visita el perfil de " + Habbokeko + "](https://habbo.es/profile/"+ Habbokeko + ")"  "\n\n[twitter oficial](https://twitter.com/ESHabbo) | " "[facebook oficial](https://www.facebook.com/Habbo) | " "[instagram oficial](https://www.instagram.com/habboofficial)", timestamp=datetime.utcnow(), color=discord.Colour.random())
 
   embed.set_thumbnail(url="https://www.habbo.es/habbo-imaging/avatarimage?user=" + Habbokeko + "&&headonly=1&size=b&gesture=sml&head_direction=4&action=std")
   embed.set_author(name="Habbo [ES]", icon_url="https://i.imgur.com/0UDuO3n.png")
   embed.set_footer(text="habbo[ES]", icon_url="https://i.imgur.com/6ePWlHz.png")
   await ctx.send(embed=embed)
- 
- 
-
   
+
     
   
  
