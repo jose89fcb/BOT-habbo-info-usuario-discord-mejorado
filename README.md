@@ -21,8 +21,6 @@ Muestra Tiempo de ultimo acesso y tiempo de miembro
 
 
 
-Aquí teneis el bot preparado para subirse a replit y mantenerlo las 24/7:
-https://github.com/jose89fcb/bot-habboinfo-subir-a-replit
 
 
 He corregido el error para poder visualizar el perfil de cualquier usuario, antes no lo hacia en la gran mayoria
