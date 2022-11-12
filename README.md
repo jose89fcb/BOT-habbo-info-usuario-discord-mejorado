@@ -15,6 +15,7 @@ ahora muestra la hora y fecha correctamente
 <br>
 <img src="https://i.imgur.com/ZJtqTiJ.png">
 #
+Muestra Tiempo de ultimo acesso y tiempo de miembro
 <br>
 <img src="https://i.imgur.com/xr10jiF.png">
 
