@@ -16,7 +16,6 @@ ahora muestra la hora y fecha correctamente
 <img src="https://i.imgur.com/ZJtqTiJ.png">
 #
 <br>
-#
 <img src"https://i.imgur.com/xr10jiF.png">
 
 
