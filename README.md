@@ -1,3 +1,7 @@
+Modifica el id del canal el cual usaras el bot:
+<br>
+https://github.com/jose89fcb/BOT-habbo-info-usuario-discord-mejorado/blob/main/config.json
+
 <b>última actualizacion</b> 
 <br>
 Hora: 5:28
