@@ -39,27 +39,26 @@ bot.remove_command("help") #Borramos el comando !help por defecto
 #Comienza el codigo de habbo.es
 @bot.command()
 async def habbo(ctx,  *, Habboinfo):
-  
-  async with ctx.typing():
+  #await ctx.channel.trigger_typing() #Si quieres puedes quitar "#" del principio del código para usarlo
    
-    await asyncio.sleep(0)
-    await ctx.message.delete() #Borramos el comando para no dejar sucio el chat xD
-    await ctx.send(f"Generando información del keko  {Habboinfo}...", delete_after=0)
-    time.sleep(3)
-
-   
-
-    try:
-
-     response = requests.get("https://www.habbo." + config['hotel']+  f"/api/public/users?name={Habboinfo}")
-
+  await asyncio.sleep(0)
+  await ctx.message.delete() #Borramos el comando para no dejar sucio el chat xD
+  await ctx.send(f"Generando información del keko  {Habboinfo}...", delete_after=0)
+  time.sleep(3)
 
    
 
+  try:
 
-     id = response.json()['uniqueId']
-     Habbokeko = response.json()['name']
-     mision = response.json()['motto']
+    response = requests.get("https://www.habbo." + config['hotel']+  f"/api/public/users?name={Habboinfo}")
+
+
+   
+
+
+    id = response.json()['uniqueId']
+    Habbokeko = response.json()['name']
+    mision = response.json()['motto']
 
    
 
@@ -67,9 +66,9 @@ async def habbo(ctx,  *, Habboinfo):
    
    
 
-     fecha = isoparse(response.json()['memberSince']).timestamp()
-     timestamp = fecha
-     dt_object = datetime.fromtimestamp(timestamp).strftime("%A, %#d de %B del %Y %H:%M:%S")
+    fecha = isoparse(response.json()['memberSince']).timestamp()
+    timestamp = fecha
+    dt_object = datetime.fromtimestamp(timestamp).strftime("%A, %#d de %B del %Y %H:%M:%S")
     #registrado = MiembroDesde
     #miembro = registrado.split("T")[0].split("-")
     #fecha = "/".join(reversed(miembro))
@@ -80,40 +79,40 @@ async def habbo(ctx,  *, Habboinfo):
     #miembro1 = registradodesde.split("T")[1].split(" ")
     #hora = " ".join(reversed(miembro1))
 
-     url = "https://www.habbo." + config['hotel']+  f"/api/public/users/{id}/groups"
-     r= requests.get(url)
-     habbo4 = r.text
-     habbo4 = r.json()
-     grupos = len(habbo4)
-     grupos=(str(grupos))
+    url = "https://www.habbo." + config['hotel']+  f"/api/public/users/{id}/groups"
+    r= requests.get(url)
+    habbo4 = r.text
+    habbo4 = r.json()
+    grupos = len(habbo4)
+    grupos=(str(grupos))
 
-     url = "https://www.habbo." + config['hotel'] + f"/api/public/users/{id}/rooms"
-     r= requests.get(url)
-     habbo3 = r.text
-     habbo3 = r.json()
-     salas = len(habbo3)
-     salas=(str(salas))
+    url = "https://www.habbo." + config['hotel'] + f"/api/public/users/{id}/rooms"
+    r= requests.get(url)
+    habbo3 = r.text
+    habbo3 = r.json()
+    salas = len(habbo3)
+    salas=(str(salas))
 
-     url = "https://www.habbo." + config['hotel'] + f"/extradata/public/users/{id}/photos"
-     r= requests.get(url)
-     habbo2 = r.text
-     habbo2 = r.json()
-     fotos = len(habbo2)
-     fotos=(str(fotos))
+    url = "https://www.habbo." + config['hotel'] + f"/extradata/public/users/{id}/photos"
+    r= requests.get(url)
+    habbo2 = r.text
+    habbo2 = r.json()
+    fotos = len(habbo2)
+    fotos=(str(fotos))
 
-     url= "https://www.habbo." + config['hotel'] + f"/api/public/users/{id}/friends"
-     r= requests.get(url)
-     habbo1 = r.text
-     habbo1 = r.json()
-     amigos = len(habbo1)
-     amigos=(str(amigos))
+    url= "https://www.habbo." + config['hotel'] + f"/api/public/users/{id}/friends"
+    r= requests.get(url)
+    habbo1 = r.text
+    habbo1 = r.json()
+    amigos = len(habbo1)
+    amigos=(str(amigos))
 
-     url= "https://www.habbo." + config['hotel'] + f"/api/public/users/{id}/badges"
-     r= requests.get(url)
-     habbo2 = r.text
-     habbo2 = r.json()
-     placas = len(habbo2)
-     placas = ('{:,}'.format(placas)).replace(",",".")
+    url= "https://www.habbo." + config['hotel'] + f"/api/public/users/{id}/badges"
+    r= requests.get(url)
+    habbo2 = r.text
+    habbo2 = r.json()
+    placas = len(habbo2)
+    placas = ('{:,}'.format(placas)).replace(",",".")
 
 
     
@@ -127,73 +126,73 @@ async def habbo(ctx,  *, Habboinfo):
     
     
 
-     fecha = isoparse(response.json()['lastAccessTime']).timestamp()
-    except KeyError:
+    fecha = isoparse(response.json()['lastAccessTime']).timestamp()
+  except KeyError:
       fecha="No muestra"
 
-    except TypeError:
+  except TypeError:
       fecha=""
 
       
-    timestamp = fecha
+  timestamp = fecha
 
-    try:
+  try:
 
      date1 =  parser.parse(datetime.fromtimestamp(timestamp).strftime("%Y-%m-%d %H:%M:%S")) 
-    except TypeError:
+  except TypeError:
       date1="No muestra"
 
-    date2 = datetime.now()
+  date2 = datetime.now()
 
-    try:
+  try:
 
      r = relativedelta.relativedelta(date2, date1)
-    except TypeError:
+  except TypeError:
       r=""
 
-    try:
+  try:
 
      r.months + (12*r.years)
-    except AttributeError:
+  except AttributeError:
       r=""
 
-    try:
+  try:
 
      tiempotrans = f"{r.years} Años {r.days} Días {r.hours} Horas {r.months} Meses {r.minutes} Minutos {r.seconds} Segundos"
-    except AttributeError:
+  except AttributeError:
       tiempotrans="No muestra ❌"
    ###
 
 
    ####
      
-    try:
+  try:
 
      fecha = isoparse(response.json()['memberSince']).timestamp()
-    except KeyError:
+  except KeyError:
       fecha=""
     
 
 
     
-    timestamp = fecha
+  timestamp = fecha
 
 
-    try:
+  try:
 
      date1 =  parser.parse(datetime.fromtimestamp(timestamp).strftime("%Y-%m-%d %H:%M:%S")) 
-    except TypeError:
+  except TypeError:
       await ctx.send("El keko no existe!")
         
-    date2 = datetime.now()
+  date2 = datetime.now()
   
-    try:
+  try:
 
      r = relativedelta.relativedelta(date2, date1)
-    except TypeError:
+  except TypeError:
       r="" 
   
-    try:
+  try:
 
      r.months + (12*r.years)
   
@@ -203,7 +202,7 @@ async def habbo(ctx,  *, Habboinfo):
     
 
      tiempo = f"{r.years} Años {r.days} Días {r.hours} Horas {r.months} Meses {r.minutes} Minutos {r.seconds} Segundos"
-    except AttributeError:
+  except AttributeError:
       tiempo=""
       r=""
 
@@ -332,6 +331,7 @@ async def habbo(ctx,  *, Habboinfo):
 
   
   if ctx.message.channel.id in [int(config['id_canal'])]:
+   
   
    try:
 
