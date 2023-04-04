@@ -2,7 +2,9 @@
    
     "token":"",
     "prefijo":"!",
-    "hotel":"es"
+    "hotel":"es",
+    "id_canal":"1073996958076780684",
+    "Mensaje_error":"No puedes usar el comando en este canal"
  
     
    

@@ -331,21 +331,23 @@ async def habbo(ctx,  *, Habboinfo):
 
 
   
-
+  if ctx.message.channel.id in [int(config['id_canal'])]:
   
-  try:
+   try:
 
-   embed = discord.Embed(title="\n\n\nEstá es la info de 🡺 " + Habbokeko, description=f"•ID🡺 " + id + "\n\n•Estado🡺 " +estado + "\n\n•Total XP🡺 " + totalxp + "\n\n•Misión 🡺 " + mision  + "\n\n•Nivel actual🡺 " +  NivelActual + "\n\n•Gemas Obtenidas (Estrellas)🡺 " + GemasHabbo + "\n\n•Siguiente Nivel🡺 " + siguientenivel + "\n\n•Hora Miembro desde🡺 " +dt_object +"\n\n•Hora último accesso🡺 "  +ultmimoacesso +" \n\n•Perfil🡺 " +perfil + "\n\n•Grupos Totales🡺 " + grupos + "\n\n•Salas Totales🡺 " + salas + "\n\n•Fotos Totales🡺 " + fotos +"\n\n•Total Amigos🡺 " + amigos + "\n\n•Placas Totales🡺 " +placas + " \n\n•Tiempo de último acesso🡺 "   +tiempotrans+ "\n\n•Tiempo Miembro desde🡺 "+tiempo+ "\n\n[Visita el perfil de " + Habbokeko + "](https://habbo.es/profile/"+ Habbokeko + ")"  "\n\n[twitter oficial](https://twitter.com/ESHabbo) | " "[facebook oficial](https://www.facebook.com/Habbo) | " "[instagram oficial](https://www.instagram.com/habboofficial)", timestamp=datetime.utcnow(), color=discord.Colour.random())
+    embed = discord.Embed(title="\n\n\nEstá es la info de 🡺 " + Habbokeko, description=f"•ID🡺 " + id + "\n\n•Estado🡺 " +estado + "\n\n•Total XP🡺 " + totalxp + "\n\n•Misión 🡺 " + mision  + "\n\n•Nivel actual🡺 " +  NivelActual + "\n\n•Gemas Obtenidas (Estrellas)🡺 " + GemasHabbo + "\n\n•Siguiente Nivel🡺 " + siguientenivel + "\n\n•Hora Miembro desde🡺 " +dt_object +"\n\n•Hora último accesso🡺 "  +ultmimoacesso +" \n\n•Perfil🡺 " +perfil + "\n\n•Grupos Totales🡺 " + grupos + "\n\n•Salas Totales🡺 " + salas + "\n\n•Fotos Totales🡺 " + fotos +"\n\n•Total Amigos🡺 " + amigos + "\n\n•Placas Totales🡺 " +placas + " \n\n•Tiempo de último acesso🡺 "   +tiempotrans+ "\n\n•Tiempo Miembro desde🡺 "+tiempo+ "\n\n[Visita el perfil de " + Habbokeko + "](https://habbo.es/profile/"+ Habbokeko + ")"  "\n\n[twitter oficial](https://twitter.com/ESHabbo) | " "[facebook oficial](https://www.facebook.com/Habbo) | " "[instagram oficial](https://www.instagram.com/habboofficial)", timestamp=datetime.utcnow(), color=discord.Colour.random())
 
 
 
     
-   embed.set_thumbnail(url="https://www.habbo.es/habbo-imaging/avatarimage?user=" + Habbokeko + "&&headonly=1&size=b&gesture=sml&head_direction=4&action=std")
-   embed.set_author(name="Habbo [ES]", icon_url="https://i.imgur.com/0UDuO3n.png")
-   embed.set_footer(text="habbo[ES]", icon_url="https://i.imgur.com/6ePWlHz.png")
-   await ctx.send(embed=embed)
-  except UnboundLocalError:
+    embed.set_thumbnail(url="https://www.habbo.es/habbo-imaging/avatarimage?user=" + Habbokeko + "&&headonly=1&size=b&gesture=sml&head_direction=4&action=std")
+    embed.set_author(name="Habbo [ES]", icon_url="https://i.imgur.com/0UDuO3n.png")
+    embed.set_footer(text="habbo[ES]", icon_url="https://i.imgur.com/6ePWlHz.png")
+    await ctx.send(embed=embed)
+   except UnboundLocalError:
     Habbokeko=""
+  else:
+            await ctx.send(config["Mensaje_error"]) 
 
 
 
