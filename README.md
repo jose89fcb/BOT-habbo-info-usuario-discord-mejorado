@@ -1,4 +1,4 @@
-Modifica el id del canal el cual usaras el bot:
+Modifica el id del canal el cual usaras el bot: (Si usas el comando del bot en otro canal mandara un error "No puedes usar el comando en este canal")
 <br>
 https://github.com/jose89fcb/BOT-habbo-info-usuario-discord-mejorado/blob/main/config.json
 
